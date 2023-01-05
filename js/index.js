@@ -19,8 +19,17 @@ selected.addEventListener("click", (event) => {
 
 optionsList.forEach((option) => {
   option.addEventListener("click", () => {
+<<<<<<< HEAD
+    selected.innerHTML = option.querySelector("label").innerHTML;
+    LoadCountyWeatherData(selected.innerHTML);
+    oneWeekForecast_control.renderResult(selected.innerHTML);
+    const countrywide = document.getElementById("countrywide");
+    countrywide.style.display = "none";
+    optionsContainer.classList.remove("active");
+=======
     countyName = option.querySelector("label").textContent;
     setCountyWeather(countyName);
+>>>>>>> eca2639ddeefb27f4c98df3715e89e2c09f51677
   });
 });
 
