@@ -52,7 +52,7 @@ citys.forEach((city,index) => {
     city.addEventListener("click", ()=>{
         el("countrywide").setAttribute("hidden", true);
         LoadCountyWeatherData(cityList[index]);
-        oneWeekForecast_control.renderResult(city.textContent);
+        oneWeekForecast_control.renderResult(cityList[index]);
     }); 
 })
 

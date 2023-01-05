@@ -15,6 +15,7 @@ optionsList.forEach((option) => {
   option.addEventListener("click", () => {
     selected.innerHTML = option.querySelector("label").innerHTML;
     LoadCountyWeatherData(selected.innerHTML);
+    oneWeekForecast_control.renderResult(selected.innerHTML);
     const countrywide = document.getElementById("countrywide");
     countrywide.style.display = "none";
     optionsContainer.classList.remove("active");
