@@ -1,30 +1,54 @@
-## 功能元件之「Nav bar」介紹：
+# We Help Weather Forecast
 
-- Nav bar:
+## 🔗 [Project Link](https://ting-yang14.github.io/weather-forecast_team-15/)
 
-  - Logo：點擊顯示各縣市的當前天氣
-  - Search bar：顯示全台各縣市的選單以及關鍵字篩選，點擊縣市名稱更新搜尋欄為選取縣市名稱並顯示 36 小時和當週天氣預報
-  - 各縣市總覽：點擊顯示各縣市的當前天氣
+## 組員分工
 
-- Nav bar DEMO video
+- 組長：盧廷洋
 
-  <video width="500" height="240" controls>
-    <source src="image/Nav_bar_DEMO.mov" type="video/mp4">
-  </video>
+  - 導覽列, 頁腳, 功能元件整合
 
-- Nav bar RWD
+- 組員：陳彥華
+
+  - 異常天氣跑馬燈
+
+- 組員：陳心渝
+
+  - 首頁 - 各縣市 36 小時天氣總覽
+
+- 組員：陳思安
+
+  - 指定縣市 - 未來 36 小時天氣預報
+
+- 組員：陳鴻銘
+
+  - 指定縣市 - 未來一週天氣預報
+
+## 功能元件之「導覽列」介紹：
+
+- 導覽列:
+
+  - Logo：點擊返回 [ 首頁 ] ，顯示各縣市的當前天氣
+  - Search bar：顯示全台各縣市的選單以及關鍵字篩選，點擊縣市名稱更新搜尋欄為 [ 指定縣市 ] 名稱並顯示 [ 指定縣市 ] 未來 36 小時天氣預報和未來一週天氣預報
+  - 各縣市總覽：點擊返回 [ 首頁 ] ，顯示各縣市的當前天氣
+
+- 導覽列 DEMO
+
+  <img src="./image/Nav_bar_DEMO.gif" width="450"/>
+
+- 導覽列 RWD
 
   - window width > 720px
 
-    ![windowWidth>720px](image/nav_greater_720.png)
+    ![windowWidth > 720px](image/nav_greater_720.png)
 
   - window width < 720px
 
-    ![windowWidth<720px](image/nav_less_720.png)
+    ![windowWidth < 720px](image/nav_less_720.png)
 
   - window width < 500px
 
-    ![windowWidth<500px](image/nav_less_500.png)
+    ![windowWidth < 500px](image/nav_less_500.png)
 
 - 元件負責人員: 盧廷洋
 
@@ -39,19 +63,22 @@
   - 資訊來源: [中央氣象局開放資料平臺提供的 API](https://opendata.cwb.gov.tw/dist/opendata-swagger.html)
 - 畫面展示:
 
-  - 有異常天氣特報事件時: 閃爍顯示有發布警示特報的地區，畫面呈現如下圖。
-
+  - 有異常天氣特報事件時: 閃爍顯示有發布警示特報的地區，畫面呈現如下所示。
+    <img src="./image/abnormalEvent.gif" width="1000"/>
+    
     ![abnormalEvent_1](image/abnormalEvent_1.PNG)
     ![abnormalEvent_2](image/abnormalEvent_2.PNG)
 
-  - 沒有異常天氣特報事件時: 閃爍顯示問候祝福語，畫面呈現如下圖。
 
+  - 沒有異常天氣特報事件時: 閃爍顯示問候祝福語，畫面呈現如下圖所示。
+    <img src="./image/normalevent.gif" width="1000"/>
+    
     ![noAbnormalEvent_1](image/noAbnormalEvent_1.PNG)
     ![noAbnormalEvent_2](image/noAbnormalEvent_2.PNG)
 
 - 元件負責人員: 陳彥華
 
-## 首頁 - 各縣市 36 小時天氣總覽：
+## 功能元件之「首頁 - 各縣市 36 小時天氣總覽」介紹：
 
 - 功能：依據現在時間及 api 的氣象資料結束時間，判斷今明狀態，使用者點擊後，顯示對應的資料，滑鼠移至表格上方，出現陰影效果及 aria-lebel，提示使用者點擊後可觀看詳細資料。
   - 今明狀態：今日凌晨、今日白天、今晚明晨、明日白天、明日晚上。
@@ -119,9 +146,9 @@
 
 - 元件負責人員: 陳鴻銘
 
-## 功能元件之「footer」介紹：
+## 功能元件之「頁腳」介紹：
 
-- footer:
+- 頁腳:
 
   - copyright
   - 製作者社群：小組成員及 github link
