@@ -6,7 +6,10 @@ const optionsList = document.querySelectorAll(".option");
 const searchBoxInput = document.querySelector(".search-box > input");
 const countrywide = document.getElementById("countrywide");
 const countySelected = document.getElementById("countySelected");
+const navLogo = document.querySelector(".navbar__logo");
+const navHomes = document.querySelectorAll(".navbar__home");
 
+countySelected.style.display = "none";
 selected.addEventListener("click", (event) => {
   event.stopPropagation();
   optionsContainer.classList.toggle("active");
@@ -30,7 +33,7 @@ function setCountyWeather(countyName) {
   LoadCountyWeatherData(countyName);
   oneWeekForecast_control.renderResult(countyName);
   countrywide.setAttribute("hidden", true);
-  countySelected.removeAttribute("hidden");
+  countySelected.style.display = "block";
   optionsContainer.classList.remove("active");
   searchBoxInput.value = "";
 }
@@ -50,7 +53,7 @@ const filterList = (searchTerm) => {
   });
 };
 
-const navHomes = document.querySelectorAll(".navbar__home");
+navLogo.addEventListener("click", resetCountrywideWeather);
 navHomes.forEach((navHome) => {
   navHome.addEventListener("click", resetCountrywideWeather);
 });
@@ -60,7 +63,7 @@ function resetCountrywideWeather() {
   searchBoxInput.value = "";
   document.title = `首頁`;
   countrywide.removeAttribute("hidden");
-  countySelected.setAttribute("hidden", true);
+  countySelected.style.display = "none";
 }
 
 document.addEventListener("click", (event) => {

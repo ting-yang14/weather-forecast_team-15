@@ -57,7 +57,7 @@ const oneWeekForecast_view = {
             for(let i=1; i<data.dateArray.length; i++){
                 element.push({
                     tab: "div",
-                    innerHTML: `<span>星期${data.dayArray[new Date(data.dateArray[i]).getDay()]}</span><span>${data.dateArray[i]}</span>`,
+                    innerHTML: `<span>星期${data.dayArray[new Date(data.dateArray[i]).getDay()]}</span><span>${data.dateArray[i].slice(5, 10)}</span>`,
                     appendToElement: "#oneWeekForecastContent_date",
                     attribute: [
                         ["class", (data.holidayArray[new Date(data.dateArray[i]).getDay()]===0) ? "columnTitle" : "columnTitle_red"]
@@ -200,17 +200,17 @@ const oneWeekForecast_view = {
     }
 };
 const oneWeekForecast_model = {
-    formFetchURL(county){
+    formFetchURL(county, apiAuthorizationCode){
         let urlConfig = {
             url: "https://opendata.cwb.gov.tw/api/v1/rest/datastore",
             apiCode: "F-D0047-091",
-            authorizationKey: "CWB-B3553433-F001-4DF4-9EFA-7D67695CD183",
+            apiAuthorizationCode: apiAuthorizationCode,
             format: "JSON",
             county: county,
             elementName: "MinT,MaxT,MinAT,MaxAT,UVI,Wx",
             sort: "time",
         };
-        let fetchURL = `${urlConfig.url}/${urlConfig.apiCode}?Authorization=${urlConfig.authorizationKey}`+
+        let fetchURL = `${urlConfig.url}/${urlConfig.apiCode}?Authorization=${urlConfig.apiAuthorizationCode}`+
             `&format=${urlConfig.format}&locationName=${urlConfig.county}&elementName=${urlConfig.elementName}`+
             `&sort=${urlConfig.sort}`;
         // console.log("trying to fetch URL:", fetchURL);
@@ -236,7 +236,7 @@ const oneWeekForecast_model = {
     },
     getDataByValueType(valueType, data, i, array){
         if(valueType==="date"){
-            return array.push(data[i]["startTime"].slice(5, 10));
+            return array.push(data[i]["startTime"].slice(0, 10));
         }else if(valueType==="value"){
             return array.push(data[i]["elementValue"][0]["value"]);
         }else if(valueType==="minValue"){
@@ -297,8 +297,8 @@ const oneWeekForecast_model = {
     },
     formData(county, fetchedData){
         return {
-            dayArray:     ["六", "日", "一", "二", "三", "四", "五"], 
-            holidayArray: [1, 1, 0, 0, 0, 0, 0], 
+            dayArray:     ["日", "一", "二", "三", "四", "五", "六"], 
+            holidayArray: [1, 0, 0, 0, 0, 0, 1],
             dateArray:         this.filterFetchedData(fetchedData, this.setFilterCondition(3, county,                "all",    "date")),
             minDayTempArray:   this.filterFetchedData(fetchedData, this.setFilterCondition(2, "白天:最低白天溫度",     "day",   "value")),
             maxDayTempArray:   this.filterFetchedData(fetchedData, this.setFilterCondition(5, "白天:最高白天溫度",     "day",   "value")),
@@ -317,7 +317,7 @@ const oneWeekForecast_model = {
 const oneWeekForecast_control = {
     renderResult(county){
         oneWeekForecast_view.initializeOneWeekForecastElements();
-        oneWeekForecast_model.getForecastData(oneWeekForecast_model.formFetchURL(county)).then((fetchedData)=>{
+        oneWeekForecast_model.getForecastData(oneWeekForecast_model.formFetchURL(county, apiAuthorizationCode)).then((fetchedData)=>{
             let data = oneWeekForecast_model.formData(county, fetchedData);
             // console.log("filtered forecast data are:", data);
             let column = ["sectionStructure", "一週預報標題", "縣市與日期欄位", "白天欄位", "晚上欄位", "體感溫度欄位", "紫外線欄位"];
